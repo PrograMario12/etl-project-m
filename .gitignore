@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/jupyternotebooks,venv
 # Edit at https://www.toptal.com/developers/gitignore?templates=jupyternotebooks,venv
 
+#Private
+CONFIG.py
+
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
@@ -28,5 +31,6 @@ ipython_config.py
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+/__pycache__
 
 # End of https://www.toptal.com/developers/gitignore/api/jupyternotebooks,venv
