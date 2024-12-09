@@ -1,5 +1,6 @@
 ''' This module contains the classes for commiting transactions. '''
 from abc import ABC, abstractmethod
+import logging
 
 class Commiter(ABC):
     ''' This class is an abstract class for commiting
@@ -13,24 +14,29 @@ class Commiter(ABC):
         ''' This method is an abstract method for validating the
         connection. '''
 
-class DatabaseCommiter(Commiter):
+class DatabaseCommitter(Commiter):
     ''' This class is a concrete class for commiting transactions. '''
 
     def __init__(self, connection):
-        ''' This method initializes the commiter. '''
+        '''
+        Initializes the DatabaseCommiter with a database connection.
+
+        Parameters:
+        connection (object): The database connection object.
+        '''
         self.connection = connection
 
     def commit(self):
         ''' This method commits a transaction. '''
         try:
             self.connection.commit()
-            print("Transaction commited")
-        except Exception as e:
-            print(f"Error commiting transaction: {e}")
+            logging.info("Transaction committed")
+        except self.connection.DatabaseError as e:
+            logging.error("Database error committing transaction: %s", e)
 
     def validate_connection(self):
         ''' This method validates the connection. '''
         if self.connection.is_connected():
-            print("Connection is established")
+            logging.info("Connection is established")
         else:
-            print("Connection is not established")
+            logging.error("Connection is not established")
