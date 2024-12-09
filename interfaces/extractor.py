@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class Extractor(ABC):
     """
     This class is an abstract base class for extracting data.
-    
+
     Responsibilities:
     - Define the interface for data extraction by implementing the
     `extract` method.

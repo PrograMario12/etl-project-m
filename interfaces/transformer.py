@@ -10,9 +10,9 @@ class Transformer(ABC):
     `validate` methods to define specific transformation and validation logic.
 
     Methods:
-        transform(dataframe): Abstract method to transform the data.
-        validate(dataframe): Abstract method to validate the data.
-        log(message): Logs a message to the console.
+        - transform(dataframe): Abstract method to transform the data.
+        - validate(dataframe): Abstract method to validate the data.
+        - log(message): Logs a message to the console.
     """
     @abstractmethod
     def transform(self, dataframe):
