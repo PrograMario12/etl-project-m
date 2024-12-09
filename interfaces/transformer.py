@@ -4,11 +4,11 @@ from abc import ABC, abstractmethod
 class Transformer(ABC):
     ''' This class is an abstract class for transforming data. '''
     @abstractmethod
-    def transform(self, df):
+    def transform(self, dataframe):
         ''' This method is an abstract method for transforming data. '''
 
     @abstractmethod
-    def validate(self, df):
+    def validate(self, dataframe):
         ''' This method is an abstract method for validating data. '''
 
     def log(self, message):
