@@ -42,6 +42,7 @@ class DatabaseConnection(Connection):
     def __init__(self):
         ''' This method initializes the database connection. '''
         self.connection = None
+        self.cursor = None
 
     def connect(self):
         ''' This method connects to the database. '''
@@ -54,6 +55,7 @@ class DatabaseConnection(Connection):
                 database=config.DATABASE
             )
             logging.info("Connected to database")
+
         except psycopg2.OperationalError as e:
             logging.error("Operational error connecting to database: %s", e)
         except psycopg2.DatabaseError as e:
@@ -66,6 +68,14 @@ class DatabaseConnection(Connection):
             logging.info("Disconnected from database")
         else:
             logging.info("No connection to close")
+
+    def commit(self):
+        ''' This method commits a transaction. '''
+        try:
+            self.connection.commit()
+            logging.info("Transaction committed")
+        except self.connection.DatabaseError as e:
+            logging.error("Database error committing transaction: %s", e)
 
     def is_connected(self):
         ''' This method checks if the connection is established. '''

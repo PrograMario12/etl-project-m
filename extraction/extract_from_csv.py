@@ -23,6 +23,7 @@ class CSVExtractor(Extractor):
     def extract(self):
         ''' This method extracts data from a CSV file. '''
         try:
+            print(self.file_path)
             data = pd.read_csv(self.file_path)
             return data
         except FileNotFoundError as exc:

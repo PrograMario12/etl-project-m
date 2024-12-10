@@ -30,7 +30,6 @@ class DataNormalizer(Transformer):
 
     def validate(self, dataframe):
         """ This method validates the normalized data. """
-        assert np.isclose(dataframe.std().sum(), dataframe.shape[0]), "Data is not scaled."
-        assert dataframe.mean().sum() == 0, "Data is not centered."
-        assert dataframe.std().sum() == dataframe.shape[0], "Data is not scaled."
+        assert np.isclose(dataframe.std(), 1).all(), "Data is not scaled."
+        assert np.isclose(dataframe.mean(), 0).all(), "Data is not centered."
         assert dataframe.isnull().sum().sum() == 0, "Data still has missing values."
