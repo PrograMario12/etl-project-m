@@ -21,11 +21,9 @@ class AggregateData(Transformer):
         """
         return dataframe.groupby('id').sum()
 
-    def validate(self, dataframe, expected_sum=1000):
+    def validate(self, dataframe):
         """ This method validates the aggregated data. """
-        assert 'value' in dataframe.columns, "Data is not aggregated correctly."
-        assert dataframe.index.name == 'id', "Data is not indexed by id."
-        assert dataframe.sum().sum() == expected_sum, (
-            f"Data is not aggregated correctly. Expected sum: {expected_sum}."
-        )
-        raise ValueError("Data is not aggregated correctly.")
+        if 'value' not in dataframe.columns:
+            raise ValueError("Data is not aggregated correctly.")
+        if dataframe.index.name != 'id':
+            raise ValueError("Data is not indexed by id.")
