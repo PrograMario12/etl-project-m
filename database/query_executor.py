@@ -56,8 +56,11 @@ class DatabaseQueryExecutor(QueryExecutor):
         try:
             results = self.cursor.fetchall()
             return results
-        except Exception as e:
-            logging.error("Error fetching results: %s", e)
+        except psycopg2.Error as e:
+            logging.error("Database error fetching results: %s", e)
+            return None
+        except AttributeError as e:
+            logging.error("Unexpected error fetching results: %s", e)
             return None
 
     def close_cursor(self):

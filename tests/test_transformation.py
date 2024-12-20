@@ -94,7 +94,7 @@ class TestDataNormalizer(unittest.TestCase):
             self.normalizer.validate(df)
 
     def test_validate_with_missing_values(self):
-        """Tests the validate method with missing values."""   
+        """Tests the validate method with missing values."""
         data = {
             'A': [1, 2, np.nan, 4, 5],
             'B': [10, 20, 30, 40, 50],
